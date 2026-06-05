@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sri Seetharam Stores & Readymades – Nakkudi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Tiro+Tamil:ital@0;1&family=DM+Serif+Display:ital@0;1&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --crimson: #B5182B; --gold: #D4A017; --gold-light: #F2CB6A;
+    --cream: #FDF6E3; --ivory: #FAF3E0; --deep: #1A0A00;
+    --warm-dark: #2C1206; --copper: #C17C3A;
+    --shadow-gold: rgba(212,160,23,0.18); --text-main: #2C1206; --text-soft: #6B4226;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--text-main); font-family: 'Jost', sans-serif; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 8px; border: 2px solid var(--gold); pointer-events: none; z-index: 9999; opacity: .35; }
+
+  header { position: relative; background: var(--warm-dark); overflow: hidden; }
+  header::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 700px; height: 700px; background: radial-gradient(ellipse at center, rgba(212,160,23,.22) 0%, rgba(181,24,43,.10) 40%, transparent 70%); pointer-events: none; }
+  .header-stripe { background: repeating-linear-gradient(90deg, var(--gold) 0px, var(--gold) 12px, var(--crimson) 12px, var(--crimson) 24px); height: 6px; }
+
+  nav { display: flex; justify-content: space-between; align-items: center; padding: 18px 60px; border-bottom: 1px solid rgba(212,160,23,.25); flex-wrap: wrap; gap: 12px; }
+  .nav-logo { font-family: 'Yatra One', cursive; color: var(--gold-light); font-size: 1.1rem; }
+  .nav-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; align-items: center; }
+  .nav-links a { color: rgba(253,246,227,.72); text-decoration: none; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500; transition: color .3s; }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-links .gallery-link { color: var(--gold-light); border: 1px solid rgba(212,160,23,.5); padding: 4px 12px; border-radius: 2px; }
+  .nav-links .gallery-link:hover { background: rgba(212,160,23,.15); }
+
+  .hero { display: grid; place-items: center; text-align: center; padding: 90px 24px 80px; }
+  .hero-badge { display: inline-block; border: 1px solid var(--gold); color: var(--gold-light); font-size: .7rem; letter-spacing: .25em; text-transform: uppercase; padding: 5px 20px; border-radius: 2px; margin-bottom: 28px; animation: fadeUp .8s ease both; }
+  .hero-title { font-family: 'DM Serif Display', serif; font-size: clamp(2.8rem, 6vw, 5.5rem); color: var(--cream); line-height: 1.1; animation: fadeUp .9s .1s ease both; }
+  .hero-title span { color: var(--gold); }
+  .hero-tamil { font-family: 'Tiro Tamil', serif; font-size: clamp(1.1rem, 2.5vw, 1.6rem); color: rgba(253,246,227,.65); margin-top: 12px; animation: fadeUp 1s .2s ease both; }
+  .hero-divider { display: flex; align-items: center; gap: 16px; margin: 32px auto; width: min(420px, 90%); animation: fadeUp 1s .3s ease both; }
+  .hero-divider::before, .hero-divider::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .hero-sub { color: rgba(253,246,227,.6); font-size: .95rem; letter-spacing: .08em; animation: fadeUp 1s .4s ease both; margin-bottom: 40px; }
+  .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; animation: fadeUp 1s .5s ease both; }
+
+  .btn-primary { background: var(--gold); color: var(--deep); padding: 14px 36px; font-family: 'Jost', sans-serif; font-weight: 600; font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: background .3s, transform .2s; clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%); display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline { border: 1.5px solid rgba(212,160,23,.6); color: var(--gold-light); padding: 13px 34px; font-family: 'Jost', sans-serif; font-weight: 500; font-size: .85rem; letter-spacing: .15em; text-transform: uppercase; text-decoration: none; background: transparent; display: inline-block; transition: border-color .3s, color .3s; }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  .rating-strip { background: rgba(212,160,23,.10); border-top: 1px solid rgba(212,160,23,.2); border-bottom: 1px solid rgba(212,160,23,.2); display: flex; justify-content: center; gap: 56px; padding: 20px 24px; flex-wrap: wrap; }
+  .rating-item { text-align: center; }
+  .rating-num { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--gold-light); line-height: 1; }
+  .rating-label { font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(253,246,227,.5); margin-top: 4px; }
+  .stars { color: var(--gold); font-size: 1.1rem; }
+
+  /* ── CONTACT BAR ── */
+  .contact-bar { background: var(--crimson); display: flex; justify-content: center; align-items: center; flex-wrap: wrap; }
+  .contact-item { display: flex; align-items: center; gap: 8px; color: var(--cream); text-decoration: none; font-size: .82rem; letter-spacing: .05em; padding: 12px 22px; border-right: 1px solid rgba(253,246,227,.2); transition: background .2s; }
+  .contact-item:last-child { border-right: none; }
+  .contact-item:hover { background: rgba(0,0,0,.2); }
+  .insta-sq { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-radius: 4px; font-size: .6rem; color: white; flex-shrink: 0; }
+
+  section { padding: 90px 24px; }
+  .section-tag { font-size: .7rem; letter-spacing: .3em; text-transform: uppercase; color: var(--copper); margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+  .section-tag::before { content: ''; width: 28px; height: 1.5px; background: var(--copper); display: inline-block; }
+  .section-title { font-family: 'DM Serif Display', serif; font-size: clamp(2rem, 4vw, 3.2rem); color: var(--warm-dark); line-height: 1.15; margin-bottom: 16px; }
+  .section-title em { color: var(--crimson); font-style: italic; }
+
+  .about-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  @media(max-width:768px){ .about-grid { grid-template-columns: 1fr; } }
+  .about-visual { position: relative; }
+  .about-frame { background: linear-gradient(135deg, var(--gold) 0%, var(--copper) 100%); aspect-ratio: 4/3; border-radius: 2px; display: grid; place-items: center; font-size: 5rem; position: relative; overflow: hidden; }
+  .about-frame::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, rgba(255,255,255,.04) 0px, rgba(255,255,255,.04) 1px, transparent 1px, transparent 12px); }
+  .afc { position: absolute; width: 24px; height: 24px; border-color: var(--cream); border-style: solid; opacity: .6; }
+  .afc.tl { top:12px;left:12px;border-width:2px 0 0 2px; } .afc.tr { top:12px;right:12px;border-width:2px 2px 0 0; }
+  .afc.bl { bottom:12px;left:12px;border-width:0 0 2px 2px; } .afc.br { bottom:12px;right:12px;border-width:0 2px 2px 0; }
+  .about-accent-box { position: absolute; bottom: -20px; right: -20px; background: var(--crimson); color: var(--cream); padding: 18px 24px; text-align: center; }
+  .about-accent-box strong { display: block; font-family: 'DM Serif Display', serif; font-size: 2rem; line-height: 1; }
+  .about-accent-box span { font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; opacity: .85; }
+  .about-text p { color: var(--text-soft); line-height: 1.85; font-size: 1rem; margin-bottom: 18px; }
+  .about-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .pill { border: 1px solid var(--gold); color: var(--copper); font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; padding: 6px 16px; border-radius: 1px; }
+
+  .collections-section { background: var(--warm-dark); color: var(--cream); position: relative; overflow: hidden; }
+  .collections-section::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(212,160,23,.04) 0px, rgba(212,160,23,.04) 1px, transparent 1px, transparent 48px), repeating-linear-gradient(90deg, rgba(212,160,23,.04) 0px, rgba(212,160,23,.04) 1px, transparent 1px, transparent 48px); pointer-events: none; }
+  .collections-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+  .collections-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; margin-top: 50px; }
+  .collection-card { position: relative; overflow: hidden; aspect-ratio: 3/4; }
+  .card-bg { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding: 28px 20px; transition: transform .4s ease; position: relative; }
+  .collection-card:hover .card-bg { transform: scale(1.03); }
+  .card-bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(28,8,0,.85) 0%, transparent 55%); }
+  .c1 { background: linear-gradient(160deg, #7B3F2A, #3D1A0A); } .c2 { background: linear-gradient(160deg, #2A3D5E, #0A1A2A); }
+  .c3 { background: linear-gradient(160deg, #4A2A5E, #1A0A2A); } .c4 { background: linear-gradient(160deg, #2A5E3A, #0A2A14); }
+  .card-icon { font-size: 3.5rem; margin-bottom: auto; margin-top: 28px; position: relative; z-index: 1; opacity: .85; }
+  .card-name { font-family: 'DM Serif Display', serif; font-size: 1.4rem; color: var(--cream); position: relative; z-index: 1; margin-bottom: 4px; }
+  .card-sub { font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-light); position: relative; z-index: 1; opacity: .8; }
+
+  /* Gallery preview */
+  .gallery-preview-section { background: var(--ivory); }
+  .gallery-preview-inner { max-width: 1100px; margin: 0 auto; }
+  .gallery-preview-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; margin-top: 40px; }
+  .gp-item { aspect-ratio: 3/4; overflow: hidden; border-radius: 2px; }
+  .gp-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; display: block; }
+  .gp-item:hover img { transform: scale(1.08); }
+  .gallery-cta-wrap { text-align: center; margin-top: 36px; }
+
+  .reviews-inner { max-width: 1000px; margin: 0 auto; }
+  .reviews-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 50px; flex-wrap: wrap; gap: 20px; }
+  .big-rating { display: flex; align-items: center; gap: 20px; }
+  .big-num { font-family: 'DM Serif Display', serif; font-size: 5rem; color: var(--crimson); line-height: 1; }
+  .big-stars { color: var(--gold); font-size: 1.5rem; }
+  .big-count { color: var(--text-soft); font-size: .85rem; margin-top: 4px; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+  .review-card { background: var(--ivory); border: 1px solid rgba(212,160,23,.2); padding: 28px; position: relative; transition: box-shadow .3s; }
+  .review-card:hover { box-shadow: 0 8px 32px var(--shadow-gold); }
+  .review-card::before { content: '"'; position: absolute; top: 10px; right: 20px; font-family: 'DM Serif Display', serif; font-size: 5rem; color: var(--gold); opacity: .15; line-height: 1; }
+  .review-stars { color: var(--gold); font-size: .9rem; margin-bottom: 12px; }
+  .review-text { font-size: .95rem; line-height: 1.7; color: var(--text-main); margin-bottom: 20px; font-style: italic; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg, var(--gold), var(--crimson)); display: grid; place-items: center; font-family: 'DM Serif Display', serif; color: var(--cream); font-size: 1rem; }
+  .review-name { font-weight: 600; font-size: .88rem; }
+  .review-date { font-size: .75rem; color: var(--text-soft); }
+
+  .info-section { background: linear-gradient(135deg, var(--crimson) 0%, #7A0F1C 100%); color: var(--cream); }
+  .info-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; }
+  .info-block h3 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; color: var(--gold-light); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid rgba(212,160,23,.3); }
+  .info-block p, .info-block li { font-size: .9rem; line-height: 1.9; opacity: .85; list-style: none; }
+  .info-block a { color: var(--gold-light); text-decoration: none; }
+  .info-block a:hover { text-decoration: underline; }
+  .hours-row { display: flex; justify-content: space-between; font-size: .85rem; padding: 3px 0; border-bottom: 1px solid rgba(253,246,227,.1); opacity: .85; }
+  .hours-row span:first-child { font-weight: 500; }
+  .open-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(212,160,23,.2); border: 1px solid rgba(212,160,23,.4); color: var(--gold-light); font-size: .72rem; letter-spacing: .15em; text-transform: uppercase; padding: 3px 12px; border-radius: 999px; margin-top: 12px; }
+  .open-dot { width: 6px; height: 6px; border-radius: 50%; background: #4CD964; animation: pulse 1.5s infinite; }
+  .clink { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(253,246,227,.1); opacity: .9; font-size: .88rem; }
+  .clink a { color: var(--gold-light); text-decoration: none; }
+  .clink a:hover { text-decoration: underline; }
+  .insta-badge { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); border-radius: 5px; font-size: .6rem; color: white; flex-shrink: 0; }
+
+  .map-section { padding: 0; height: 320px; position: relative; overflow: hidden; }
+  .map-section iframe { width: 100%; height: 100%; border: none; filter: sepia(.3) saturate(.9); }
+  .map-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, var(--cream) 0%, transparent 15%, transparent 85%, var(--cream) 100%); pointer-events: none; }
+
+  footer { background: var(--deep); padding: 40px 24px; text-align: center; border-top: 3px solid var(--gold); }
+  .footer-logo { font-family: 'Yatra One', cursive; font-size: 1.4rem; color: var(--gold-light); margin-bottom: 8px; }
+  .footer-tamil { font-family: 'Tiro Tamil', serif; color: rgba(253,246,227,.5); font-size: .95rem; margin-bottom: 16px; }
+  .footer-socials { display: flex; justify-content: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+  .fsb { display: inline-flex; align-items: center; gap: 7px; padding: 8px 18px; border-radius: 3px; font-size: .78rem; letter-spacing: .08em; text-decoration: none; font-weight: 500; transition: opacity .2s; }
+  .fsb:hover { opacity: .8; }
+  .fsb-insta { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
+  .fsb-map { background: rgba(212,160,23,.2); color: var(--gold-light); border: 1px solid rgba(212,160,23,.3); }
+  .footer-line { height: 1px; background: linear-gradient(90deg, transparent, rgba(212,160,23,.3), transparent); margin: 16px auto; max-width: 300px; }
+  .footer-copy { font-size: .75rem; color: rgba(253,246,227,.35); letter-spacing: .1em; }
+  .footer-site { color: var(--gold); font-size: .8rem; text-decoration: none; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media(max-width:640px){ nav { padding: 14px 20px; } .nav-links { gap: 14px; } .hero { padding: 60px 20px 50px; } .rating-strip { gap: 28px; } section { padding: 60px 20px; } .about-accent-box { bottom: -16px; right: -10px; } .contact-item { padding: 9px 14px; font-size: .78rem; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-stripe"></div>
+  <nav>
+    <div class="nav-logo">ஶ்ரீ சீதாராம் ஸ்டோர்ஸ்</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#collections">Collections</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#visit">Visit Us</a></li>
+      <li><a href="gallery.html" class="gallery-link" target="_blank">📸 Gallery</a></li>
+    </ul>
+  </nav>
+  <div class="hero">
+    <div class="hero-badge">Est. in Nakkudi, Tamil Nadu</div>
+    <h1 class="hero-title">Sri Seetharam<br><span>Stores &amp; Readymades</span></h1>
+    <p class="hero-tamil">ஶ்ரீ சீதாராம் ஸ்டோர்ஸ் &amp; ரெடிமேட்ஸ் – நாகுடி</p>
+    <div class="hero-divider"><span style="color:var(--gold)">◆</span></div>
+    <p class="hero-sub">Quality Clothing · Reasonable Prices · Trusted by the Community</p>
+    <div class="hero-ctas">
+      <a href="gallery.html" target="_blank" class="btn-primary">View Gallery</a>
+      <a href="#visit" class="btn-outline">Find Us</a>
+    </div>
+  </div>
+  <div class="rating-strip">
+    <div class="rating-item"><div class="rating-num">4.3</div><div class="stars">★★★★☆</div><div class="rating-label">Google Rating</div></div>
+    <div class="rating-item"><div class="rating-num">13</div><div class="rating-label">Customer Reviews</div></div>
+    <div class="rating-item"><div class="rating-num">In-Store</div><div class="rating-label">Shopping &amp; Delivery</div></div>
+    <div class="rating-item"><div class="rating-num">9:30<small style="font-size:1rem">pm</small></div><div class="rating-label">Closes Today</div></div>
+  </div>
+</header>
+
+<!-- CONTACT BAR -->
+<div class="contact-bar">
+  <a href="tel:9841278961" class="contact-item">📱 98412 78961</a>
+  <a href="tel:0437123844" class="contact-item">☎️ 04371 238444</a>
+  <a href="mailto:sriseetharam.nagudi@gmail.com" class="contact-item">✉️ sriseetharam.nagudi@gmail.com</a>
+  <a href="https://www.instagram.com/sri_seetharam_stores?igsh=OXlmODNhbHRlbGVq" target="_blank" class="contact-item">
+    <span class="insta-sq">▣</span>&nbsp; @sri_seetharam_stores
+  </a>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid reveal">
+    <div class="about-visual">
+      <div class="about-frame">
+        <div class="afc tl"></div><div class="afc tr"></div><div class="afc bl"></div><div class="afc br"></div>
+        <span style="position:relative;z-index:1">🪡</span>
+      </div>
+      <div class="about-accent-box"><strong>4.3★</strong><span>Google Rated</span></div>
+    </div>
+    <div class="about-text">
+      <div class="section-tag">Our Story</div>
+      <h2 class="section-title">Where Style Meets <em>Tradition</em></h2>
+      <p>Sri Seetharam Stores &amp; Readymades has been a trusted name in Nakkudi, serving the community with a wide range of quality clothing at honest prices. Located on SH 49, we are the go-to destination for families, men, women, and children looking for both everyday wear and special occasion readymades.</p>
+      <p>We believe great clothing should be accessible. Our curated collections blend classic styles with contemporary trends — all carefully chosen to suit every taste and budget.</p>
+      <div class="about-pills">
+        <span class="pill">Men's Wear</span><span class="pill">Women's Wear</span><span class="pill">Kids' Wear</span>
+        <span class="pill">Readymades</span><span class="pill">Home Delivery</span><span class="pill">In-Store Shopping</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section id="collections" class="collections-section">
+  <div class="collections-inner">
+    <div class="reveal">
+      <div class="section-tag" style="color:var(--gold-light)">What We Offer</div>
+      <h2 class="section-title" style="color:var(--cream)">Our <em style="color:var(--gold)">Collections</em></h2>
+    </div>
+    <div class="collections-grid reveal">
+      <div class="collection-card"><div class="card-bg c1"><div class="card-icon">👔</div><div class="card-name">Men's Wear</div><div class="card-sub">Shirts · Pants · Formals</div></div></div>
+      <div class="collection-card"><div class="card-bg c2"><div class="card-icon">👗</div><div class="card-name">Women's Wear</div><div class="card-sub">Sarees · Churidars · Kurtis</div></div></div>
+      <div class="collection-card"><div class="card-bg c3"><div class="card-icon">👶</div><div class="card-name">Kids' Wear</div><div class="card-sub">Casual · School · Festive</div></div></div>
+      <div class="collection-card"><div class="card-bg c4"><div class="card-icon">🎽</div><div class="card-name">Readymades</div><div class="card-sub">All Sizes · All Occasions</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY PREVIEW -->
+<section class="gallery-preview-section">
+  <div class="gallery-preview-inner reveal">
+    <div class="section-tag">Store Photos</div>
+    <h2 class="section-title">Our <em>Gallery</em></h2>
+    <p style="color:var(--text-soft);margin-top:-8px;">Real photos from inside Sri Seetharam Stores</p>
+    <div class="gallery-preview-grid">
+      <div class="gp-item"><img src="store_images/img_007.jpg" alt="Store interior" loading="lazy"></div>
+      <div class="gp-item"><img src="store_images/img_003.jpg" alt="Clothing display" loading="lazy"></div>
+      <div class="gp-item"><img src="store_images/img_009.jpg" alt="Women's collection" loading="lazy"></div>
+      <div class="gp-item"><img src="store_images/img_005.jpg" alt="Dress collection" loading="lazy"></div>
+      <div class="gp-item"><img src="store_images/img_011.jpg" alt="Readymades" loading="lazy"></div>
+      <div class="gp-item"><img src="store_images/img_014.jpg" alt="Store display" loading="lazy"></div>
+      <div class="gp-item"><img src="store_images/img_020.jpg" alt="Collection" loading="lazy"></div>
+      <div class="gp-item"><img src="store_images/img_002.jpg" alt="Clothing store" loading="lazy"></div>
+    </div>
+    <div class="gallery-cta-wrap">
+      <a href="gallery.html" target="_blank" class="btn-primary">View All 138 Photos →</a>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="background:var(--ivory);">
+  <div class="reviews-inner">
+    <div class="reviews-header reveal">
+      <div><div class="section-tag">What Customers Say</div><h2 class="section-title">Customer <em>Reviews</em></h2></div>
+      <div class="big-rating"><div class="big-num">4.3</div><div><div class="big-stars">★★★★☆</div><div class="big-count">13 Google Reviews</div></div></div>
+    </div>
+    <div class="reviews-grid reveal">
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Reasonable prices with good collections. Awesome prices with good quality. Hopefully will be a long time customer. Thanks!</p>
+        <div class="review-author"><div class="review-avatar">S</div><div><div class="review-name">Samba Siva Rao</div><div class="review-date">Local Guide · 6 years ago</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Nice collections and considerable price. A wonderful store for the whole family with great variety.</p>
+        <div class="review-author"><div class="review-avatar">R</div><div><div class="review-name">Raghavendran Ragothaman</div><div class="review-date">Local Guide · 6 years ago</div></div></div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Super store! Great clothing store with good collection. Highly recommend for everyone in Nakkudi and surrounding areas.</p>
+        <div class="review-author"><div class="review-avatar">J</div><div><div class="review-name">Jegan Yuvi</div><div class="review-date">4 years ago</div></div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px;" class="reveal">
+      <a href="https://maps.google.com/maps/place/SRI+SEETHARAM+STORES" target="_blank" class="btn-primary">Write a Review on Google</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-section">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5!2d79.7!3d10.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDU0JzAwLjAiTiA3OcKwNDInMDAuMCJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Sri Seetharam Stores location"></iframe>
+  <div class="map-overlay"></div>
+</div>
+
+<!-- VISIT US -->
+<section id="visit" class="info-section">
+  <div class="info-inner reveal">
+    <div class="info-block">
+      <h3>📍 Address</h3>
+      <p>191, 1, SH 49<br>Nakkudi, Tamil Nadu 614616<br><br><a href="https://maps.google.com/?q=SRI+SEETHARAM+STORES+NAKKUDI+614616" target="_blank">Open in Google Maps ↗</a></p>
+      <br><div class="open-badge"><span class="open-dot"></span> Open Now · Closes 9:30 PM</div>
+    </div>
+    <div class="info-block">
+      <h3>📞 Contact Us</h3>
+      <div class="clink">📱 <a href="tel:9841278961">98412 78961</a></div>
+      <div class="clink">☎️ <a href="tel:0437123844">04371 238444</a></div>
+      <div class="clink">✉️ <a href="mailto:sriseetharam.nagudi@gmail.com">sriseetharam.nagudi@gmail.com</a></div>
+      <div class="clink"><span class="insta-badge">▣</span> <a href="https://www.instagram.com/sri_seetharam_stores?igsh=OXlmODNhbHRlbGVq" target="_blank">@sri_seetharam_stores</a></div>
+      <div class="clink">🌐 <a href="http://sriseetharam.com" target="_blank">sriseetharam.com</a></div>
+    </div>
+    <div class="info-block">
+      <h3>🕐 Store Hours</h3>
+      <div class="hours-row"><span>Monday</span><span>9:00 AM – 9:30 PM</span></div>
+      <div class="hours-row"><span>Tuesday</span><span>9:00 AM – 9:30 PM</span></div>
+      <div class="hours-row"><span>Wednesday</span><span>9:00 AM – 9:30 PM</span></div>
+      <div class="hours-row"><span>Thursday</span><span>9:00 AM – 9:30 PM</span></div>
+      <div class="hours-row"><span>Friday</span><span>9:00 AM – 9:30 PM</span></div>
+      <div class="hours-row"><span>Saturday</span><span>9:00 AM – 9:30 PM</span></div>
+      <div class="hours-row"><span>Sunday</span><span>9:00 AM – 9:30 PM</span></div>
+    </div>
+    <div class="info-block">
+      <h3>🛍️ Services</h3>
+      <ul>
+        <li>✔ In-Store Shopping</li><li>✔ Home Delivery</li>
+        <li>✔ Men's Readymades</li><li>✔ Women's Clothing</li>
+        <li>✔ Kids' Wear</li><li>✔ Festive Collections</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Sri Seetharam Stores &amp; Readymades</div>
+  <div class="footer-tamil">ஶ்ரீ சீதாராம் ஸ்டோர்ஸ் &amp; ரெடிமேட்ஸ் – நாகுடி</div>
+  <div class="footer-socials">
+    <a href="https://www.instagram.com/sri_seetharam_stores?igsh=OXlmODNhbHRlbGVq" target="_blank" class="fsb fsb-insta">▣ @sri_seetharam_stores</a>
+    <a href="https://maps.google.com/?q=SRI+SEETHARAM+STORES+NAKKUDI" target="_blank" class="fsb fsb-map">📍 Google Maps</a>
+    <a href="gallery.html" target="_blank" class="fsb fsb-map">📸 Photo Gallery</a>
+  </div>
+  <a href="http://sriseetharam.com" class="footer-site">sriseetharam.com</a>
+  <div class="footer-line"></div>
+  <p class="footer-copy">191, 1, SH 49, Nakkudi, TN 614616 &nbsp;·&nbsp; 98412 78961 &nbsp;·&nbsp; 04371 238444</p>
+  <p class="footer-copy" style="margin-top:8px;">© 2025 Sri Seetharam Stores &amp; Readymades. All rights reserved.</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((e) => { e.forEach(x => { if(x.isIntersecting){ x.target.classList.add('visible'); io.unobserve(x.target); } }); }, {threshold:.12});
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
